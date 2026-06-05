@@ -1,72 +1,60 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Destinos Turísticos</title>
-</head>
-<body>
+{% extends 'travello/base.html' %}
 
-<h1>Destinos Turísticos</h1>
+{% block title %}
+Destinos Turísticos
+{% endblock %}
 
-<a href="{% url 'añadir_destino' %}">
-    Agregar nuevo destino
-</a>
+{% block content %}
 
-<hr>
+<div class="contenedor">
 
-{% for destino in destinos %}
+    {% for destino in destinos %}
 
-<div>
+    <div class="card">
 
-    {% if destino.imagenCiudad %}
-        <img
-            src="{{ destino.imagenCiudad.url }}"
-            alt="{{ destino.nombreCiudad }}"
-            width="300"
-        >
-    {% endif %}
+        {% if destino.imagenCiudad %}
+        <img src="{{ destino.imagenCiudad.url }}"
+             alt="{{ destino.nombreCiudad }}">
+        {% endif %}
 
-    <h2>
-        {{ destino.nombreCiudad }}
-    </h2>
+        <div class="card-body">
 
-    <p>
-        {{ destino.descripcionCiudad }}
-    </p>
+            <h2>{{ destino.nombreCiudad }}</h2>
 
-    <p>
-        Precio: S/. {{ destino.precioTour }}
-    </p>
+            <p>
+                {{ destino.descripcionCiudad }}
+            </p>
 
-    {% if destino.ofertaTour %}
-        <p>
-            <strong>
-                ¡OFERTA ESPECIAL!
-            </strong>
-        </p>
-    {% endif %}
+            <p class="precio">
+                S/. {{ destino.precioTour }}
+            </p>
 
-    <a href="{% url 'modificar_destino' destino.id %}">
-        Editar
-    </a>
+            {% if destino.ofertaTour %}
+            <span class="oferta">
+                OFERTA ESPECIAL
+            </span>
+            {% endif %}
 
-    |
+            <div class="acciones">
+                <a href="{% url 'modificar_destino' destino.id %}">
+                    Editar
+                </a>
 
-    <a href="{% url 'eliminar_destino' destino.id %}">
-        Eliminar
-    </a>
+                <a href="{% url 'eliminar_destino' destino.id %}">
+                    Eliminar
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <h2>No existen destinos registrados</h2>
+
+    {% endfor %}
 
 </div>
 
-<hr>
-
-{% empty %}
-
-<p>
-    No existen destinos registrados.
-</p>
-
-{% endfor %}
-
-</body>
-</html>
+{% endblock %}

@@ -1,33 +1,30 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Eliminar Destino</title>
-</head>
-<body>
+{% extends 'travello/base.html' %}
 
-<h1>Eliminar Destino</h1>
+{% block title %}
+Eliminar Destino
+{% endblock %}
 
-<p>
-    ¿Está seguro de eliminar el destino
-    <strong>{{ destino.nombreCiudad }}</strong>?
-</p>
+{% block content %}
 
-<form method="POST">
+<div class="formulario">
 
-    {% csrf_token %}
+    <h2>Eliminar Destino</h2>
 
-    <button type="submit">
-        Sí, eliminar
-    </button>
+    <p>
+        ¿Desea eliminar el destino
+        <strong>{{ destino.nombreCiudad }}</strong>?
+    </p>
 
-</form>
+    <form method="POST">
 
-<br>
+        {% csrf_token %}
 
-<a href="{% url 'listar_destinos' %}">
-    Cancelar
-</a>
+        <button type="submit">
+            Sí, eliminar
+        </button>
 
-</body>
-</html>
+    </form>
+
+</div>
+
+{% endblock %}

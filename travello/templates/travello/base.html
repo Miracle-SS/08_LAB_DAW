@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Destinos Turísticos{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <h1>Destinos Turísticos</h1>
+        <p>Explora los mejores lugares para tus próximas vacaciones, claro que en Perú, sabes lo que es bueno</p>
+    </header>
+
+    <nav>
+        <a href="{% url 'listar_destinos' %}">Inicio</a>
+        <a href="{% url 'añadir_destino' %}">Agregar Destino</a>
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+
+</html>
