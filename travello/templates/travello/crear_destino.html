@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Destino</title>
+</head>
+<body>
+
+<h1>Agregar Destino Turístico</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Guardar
+    </button>
+
+</form>
+
+<br>
+
+<a href="{% url 'listar_destinos' %}">
+    Volver al listado
+</a>
+
+</body>
+</html>

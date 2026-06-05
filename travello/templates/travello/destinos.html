@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Destinos Turísticos</title>
+</head>
+<body>
+
+<h1>Destinos Turísticos</h1>
+
+<a href="{% url 'añadir_destino' %}">
+    Agregar nuevo destino
+</a>
+
+<hr>
+
+{% for destino in destinos %}
+
+<div>
+
+    {% if destino.imagenCiudad %}
+        <img
+            src="{{ destino.imagenCiudad.url }}"
+            alt="{{ destino.nombreCiudad }}"
+            width="300"
+        >
+    {% endif %}
+
+    <h2>
+        {{ destino.nombreCiudad }}
+    </h2>
+
+    <p>
+        {{ destino.descripcionCiudad }}
+    </p>
+
+    <p>
+        Precio: S/. {{ destino.precioTour }}
+    </p>
+
+    {% if destino.ofertaTour %}
+        <p>
+            <strong>
+                ¡OFERTA ESPECIAL!
+            </strong>
+        </p>
+    {% endif %}
+
+    <a href="{% url 'modificar_destino' destino.id %}">
+        Editar
+    </a>
+
+    |
+
+    <a href="{% url 'eliminar_destino' destino.id %}">
+        Eliminar
+    </a>
+
+</div>
+
+<hr>
+
+{% empty %}
+
+<p>
+    No existen destinos registrados.
+</p>
+
+{% endfor %}
+
+</body>
+</html>
